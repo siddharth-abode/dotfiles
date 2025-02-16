@@ -1,0 +1,5 @@
+[plugin]
+deps = []
+
+[flavor]
+deps = [{ use = "kalidyasin/yazi-flavors:tokyonight-moon", rev = "92a09a6" }]
