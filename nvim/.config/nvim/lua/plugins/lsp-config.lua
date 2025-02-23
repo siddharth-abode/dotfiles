@@ -29,7 +29,7 @@ return {
                 capabilities = capabilities,
             })
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = "sh",
+                pattern = "*sh",
                 callback = function()
                     vim.lsp.start({
                         name = "bash-language-server",
