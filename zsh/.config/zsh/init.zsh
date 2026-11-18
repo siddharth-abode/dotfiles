@@ -1,6 +1,7 @@
 source "$CUSTOM_PATH/plugins.zsh"
 source "$CUSTOM_PATH/keybindings.zsh"
 source "$CUSTOM_PATH/aliases.zsh"
+source "$CUSTOM_PATH/options.zsh"
 #echo ("printing from config directory")
 
 # Open tmux on startup

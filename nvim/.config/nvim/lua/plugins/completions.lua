@@ -1,24 +1,28 @@
 return {
-    {
-        "hrsh7th/cmp-nvim-lsp",
-    },
+	{
+		"hrsh7th/cmp-nvim-lsp",
+	},
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
-            "rafamadriz/friendly-snippets",
+			"rafamadriz/friendly-snippets",
 		},
+		config = function()
+			-- Load friendly-snippets properly here
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
 			local cmp = require("cmp")
+			local luasnip = require("luasnip")
 
 			cmp.setup({
 				snippet = {
-                    require("luasnip.loaders.from_vscode").lazy_load(),
 					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
+						luasnip.lsp_expand(args.body)
 					end,
 				},
 				window = {
@@ -31,9 +35,27 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+					-- Jump forward through snippet placeholders
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if luasnip.expand_or_locally_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+
+					-- Jump backward through snippet placeholders
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = 'nvim_lsp' },
+					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 				}, {
 					{ name = "buffer" },

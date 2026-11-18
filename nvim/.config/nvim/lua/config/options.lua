@@ -12,7 +12,9 @@ autocmd ColorScheme * highlight CursorLineNr cterm=bold term=bold gui=bold
 
 -- Show diagnostic popup on cursor hold
 vim.api.nvim_create_autocmd("CursorHold", {
-    callback = function()
-        vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-    end
+	callback = function()
+		vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
+	end,
 })
+
+vim.opt.undofile = true
