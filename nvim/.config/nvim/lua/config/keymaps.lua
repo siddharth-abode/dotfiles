@@ -2,7 +2,8 @@ vim.keymap.set("i", "jj", "<esc>")
 vim.keymap.set("i", "<C-CR>", "<esc>o")
 vim.keymap.set("n", "-", "ddp")
 vim.keymap.set("n", "_", "ddkkp")
-vim.keymap.set("n", "<leader>;", "A;<esc>")
+-- vim.keymap.set("n", "<leader>;", "A;<esc>")
+vim.keymap.set("i", "<C-;>", "<esc>A;<CR>")
 
 -- For sommenting using ctrl+/ with respect to the file extension
 local function smart_comment()
