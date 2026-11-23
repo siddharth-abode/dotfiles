@@ -17,7 +17,7 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(FILEMANAGER))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(MENU))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+hl.bind(mainMod .. " + R", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- Lock / sleep (needs hypridle running)
 hl.bind(mainMod .. " + CONTROL + L", hl.dsp.exec_cmd("loginctl lock-session")) -- lock now
